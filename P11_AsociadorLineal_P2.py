@@ -19,6 +19,18 @@ for linea in contenido_archivo:
     entrada = componentes[0:len(componentes)-1] #todos menos el ultimo
     salida = componentes[len(componentes)-1]
 
+    #codificacion ---> convertir una variable nominal (texto)
+    #   en una o mas variables numericas
+    ##....one hot
+    if salida == "Iris-virginica\n":
+        salida = [1, 0, 0]
+    elif salida == "Iris-setosa\n":
+        salida = [0, 1, 0]
+    else: # Iris-versicolor
+        salida = [0, 0, 1]
+
+    matrizSalidas.append(salida)
+
     #transformacion
     entrada = list(map(float,entrada))
 
@@ -50,5 +62,12 @@ print(C)
 
 """
 
+Y = np.array(matrizSalidas)
+print(Y)
+
+W = x_pinv.dot(Y)
+
+print("W:")
+print(W)
 
 
